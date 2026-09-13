@@ -1,0 +1,395 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Potli design system — enamel signboard palette
+ * Paper #F4EADB · Turquoise #6CB7B1 · Deep turquoise #2E7D77
+ * Saffron #E99814 · Orange #D4611A · Lime #9DB33F · Red #DA101D · Charcoal #252525
+ * Brand red is never a background or a button — heading rules, the potli icon,
+ * spice levels and the advance-notice badge only.
+ * Never place white text on turquoise or saffron — use charcoal or brown.
+ * Alfa Slab One (headings) · Yatra One (short accents) · Karma (information)
+ */
+
+:root {
+  --radius: 0rem;
+  --charcoal: #252525;
+  --background: #f4eadb;
+  --foreground: #252525;
+  --card: #f4eadb;
+  --card-foreground: #252525;
+  --popover: #f4eadb;
+  --popover-foreground: #252525;
+  --primary: #e99814; /* saffron — actions only */
+  --primary-foreground: #252525;
+  --secondary: #6cb7b1; /* turquoise — brand identity */
+  --secondary-foreground: #252525;
+  --turquoise-deep: #2e7d77; /* turquoise as ink on ivory */
+  --brand-red: #da101d; /* logo red: heading rules, potli icon, spice + notice markers only */
+  --orange: #d4611a;
+  --lime: #9db33f;
+  --muted: #e7d9c6;
+  --muted-foreground: #5a5046;
+  --accent: #2e7d77; /* deep turquoise */
+  --accent-foreground: #f4eadb;
+  --destructive: #c0392b;
+  --destructive-foreground: #f4eadb;
+  --border: color-mix(in srgb, #252525 35%, #f4eadb);
+  --input: color-mix(in srgb, #252525 35%, #f4eadb);
+  --ring: #e99814;
+
+  --font-display: "Alfa Slab One", Georgia, serif;
+  --font-hand: "Yatra One", cursive;
+  --font-sans: "Karma", ui-sans-serif, system-ui, sans-serif;
+
+  /* Woven jute fibre — inline feTurbulence, no image files */
+  --jute: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='j'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.35' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23j)'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    --tw-shadow: 0 0 #0000 !important;
+    --tw-shadow-colored: 0 0 #0000 !important;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  /* Faint woven fibre over the whole page — invisible at a distance */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: var(--jute);
+    background-size: 160px 160px;
+    opacity: 0.04;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0;
+    text-shadow: 4px 4px 0 var(--brand-red);
+  }
+
+  h1::after,
+  h2::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 4px;
+    margin-top: 0.6rem;
+    border-radius: 0;
+    background-color: var(--brand-red);
+  }
+
+  .bg-primary h1,
+  .bg-primary h2,
+  .bg-secondary h1,
+  .bg-secondary h2,
+  .bg-orange h1,
+  .bg-orange h2,
+  .bg-lime h1,
+  .bg-lime h2,
+  .panel-color h1,
+  .panel-color h2 {
+    text-shadow: 4px 4px 0 var(--charcoal);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    border-radius: 0 !important;
+  }
+}
+
+@layer components {
+  /* Buttons — ported from the shadcn variants actually used in the design */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    border: 2px solid var(--charcoal);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    transition: background-color 150ms ease;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  .btn-lg {
+    height: 2.75rem;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-sm {
+    height: 2rem;
+    padding: 0 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--charcoal);
+  }
+
+  .btn-outline:hover {
+    background-color: color-mix(in srgb, var(--charcoal) 8%, transparent);
+  }
+
+  .btn-accent {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  .btn-accent:hover {
+    background-color: color-mix(in srgb, var(--accent) 90%, transparent);
+  }
+
+  /* Form controls — ported from the shadcn input/textarea/label */
+  .field-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .field-input {
+    display: flex;
+    width: 100%;
+    height: 2.25rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid var(--input);
+    color: var(--foreground);
+  }
+
+  .field-input:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  .field-textarea {
+    display: flex;
+    width: 100%;
+    min-height: 4rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid var(--input);
+    color: var(--foreground);
+  }
+
+  .field-textarea:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+  }
+
+  .badge-outline {
+    background-color: transparent;
+    border-color: var(--border);
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .hard-shadow {
+    box-shadow: 6px 6px 0 var(--charcoal) !important;
+  }
+
+  .sign-panel {
+    position: relative;
+    border-top: 4px solid var(--charcoal);
+    isolation: isolate;
+  }
+
+  .sign-panel::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    z-index: 0;
+    pointer-events: none;
+    border: 1px solid color-mix(in srgb, var(--charcoal) 55%, transparent);
+  }
+
+  .sign-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .panel-color {
+    color: var(--charcoal);
+  }
+
+  .torn-note {
+    clip-path: polygon(
+      0 3%, 7% 0, 15% 2%, 24% 0, 36% 2%, 48% 0, 60% 2%, 73% 0, 84% 2%, 94% 0, 100% 3%,
+      100% 97%, 94% 100%, 84% 98%, 73% 100%, 60% 98%, 48% 100%, 36% 98%, 24% 100%, 15% 98%, 7% 100%, 0 97%
+    );
+  }
+
+  .torn-note-shadow {
+    filter: drop-shadow(6px 6px 0 var(--charcoal));
+  }
+
+  /* Jute texture overlays */
+  .jute {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .jute::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: var(--jute);
+    background-size: 160px 160px;
+    opacity: 0.04;
+  }
+
+  /* Painted hessian — slightly stronger, for turquoise bands */
+  .jute-strong {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .jute-strong::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: var(--jute);
+    background-size: 140px 140px;
+    mix-blend-mode: multiply;
+    opacity: 0.1;
+  }
+
+  .jute-strong > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Small scalloped bottom edge — thin strips only */
+  .edge-scallop {
+    --scallop: 6px;
+    position: relative;
+    -webkit-mask-image: radial-gradient(var(--scallop) at 50% calc(100% - var(--scallop)), #0000 98%, #000);
+    mask-image: radial-gradient(var(--scallop) at 50% calc(100% - var(--scallop)), #0000 98%, #000);
+    -webkit-mask-size: calc(var(--scallop) * 2) 100%;
+    mask-size: calc(var(--scallop) * 2) 100%;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+  }
+
+  .edge-notched {
+    --notch: 12px;
+    clip-path: polygon(
+      0 var(--notch), 4% 0, 8% var(--notch), 12% 0, 16% var(--notch), 20% 0, 24% var(--notch), 28% 0,
+      32% var(--notch), 36% 0, 40% var(--notch), 44% 0, 48% var(--notch), 52% 0, 56% var(--notch),
+      60% 0, 64% var(--notch), 68% 0, 72% var(--notch), 76% 0, 80% var(--notch), 84% 0,
+      88% var(--notch), 92% 0, 96% var(--notch), 100% 0, 100% 100%, 0 100%
+    );
+  }
+
+  /* Hand-drawn wavy rule in saffron, used between homepage sections */
+  .rule-wavy {
+    height: 10px;
+    border: 0;
+    background-repeat: repeat-x;
+    background-size: 32px 10px;
+    opacity: 0.55;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='10' viewBox='0 0 32 10'%3E%3Cpath d='M0 6 Q4 1 8 6 T16 6 T24 6 T32 6' fill='none' stroke='%23E99814' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  /* Short red underline beneath headings — echoes the rule under the logo wordmark */
+  .heading-rule::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 4px;
+    margin-top: 0.6rem;
+    border-radius: 0;
+    background-color: var(--brand-red);
+  }
+
+  /* Modifier: charcoal rule for headings sitting on the saffron band */
+  .heading-rule-charcoal::after {
+    background-color: var(--charcoal);
+  }
+
+  /* Retro signboard address treatment — cream type with red outline and hard shadow */
+  .signboard-address {
+    font-family: var(--font-display);
+    color: #f5f0e1;
+    -webkit-text-stroke: 2px #b22222;
+    text-shadow: 4px 4px 0 #b22222;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* CSS-only mobile navigation — no client-side state */
+  .nav-toggle:checked ~ .nav-mobile {
+    display: block;
+  }
+
+  .nav-toggle:checked ~ * .nav-icon-open {
+    display: none;
+  }
+
+  .nav-toggle:checked ~ * .nav-icon-close {
+    display: block;
+  }
+}

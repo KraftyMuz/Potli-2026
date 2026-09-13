@@ -1,0 +1,38 @@
+{
+  "seo": {
+    "title": "Order Collection — Potli Hammersmith",
+    "description": "Order Potli online for collection from King Street, Hammersmith. Pay at pickup — no card needed.",
+    "ogTitle": "Order Collection — Potli Hammersmith",
+    "ogDescription": "Order online, pay at pickup. Indian street food from King Street."
+  },
+  "eyebrow": "Order online",
+  "heading": "Order Collection",
+  "intro": "Order online, pay at pickup. Choose your dishes, pick a time, done.",
+  "formAction": "https://formspree.io/f/REPLACE_ME",
+  "formMethod": "POST",
+  "submitLabel": "Place Order",
+  "payNote": "Pay at pickup — cash or card at the counter.",
+  "menuHeading": "Choose your dishes",
+  "menuHint": "Tick everything you'd like. Quantities and any changes can be noted in the box at the bottom.",
+  "basketHeading": "Collection details",
+  "noticeNote": "Dishes marked with an advance-notice badge need ordering that far ahead — pick a later collection date for those.",
+  "collectionAddress": "319–321 King Street, Hammersmith W6 9NH · 020 8741 4328",
+  "fields": {
+    "date": "Collection date",
+    "time": "Collection time",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email (optional)",
+    "notes": "Notes for the kitchen (optional)",
+    "notesPlaceholder": "Quantities, allergies, spice preferences…"
+  },
+  "pickupSlots": [
+    "12:00", "12:30", "13:00", "13:30", "14:00",
+    "17:30", "18:00", "18:30", "19:00", "19:30",
+    "20:00", "20:30", "21:00", "21:30"
+  ],
+  "afterSubmit": {
+    "heading": "Order Confirmed!",
+    "body": "Your order is with the kitchen. We'll call you back to confirm the total and the pickup time."
+  }
+}

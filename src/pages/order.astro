@@ -1,0 +1,162 @@
+---
+import Potli from "../layouts/Potli.astro";
+import site from "../content/site.json";
+import order from "../content/order.json";
+import menu from "../content/menu.json";
+
+function formatPrice(pence: number): string {
+  return `£${(pence / 100).toFixed(2).replace(/\.00$/, "")}`;
+}
+
+function spiceIcons(level: number): string {
+  return "\u25B2".repeat(Math.max(0, level));
+}
+
+const sections = menu.categories
+  .slice()
+  .sort((a, b) => a.sort - b.sort)
+  .map((cat) => ({
+    ...cat,
+    items: menu.items.filter((i) => i.category_id === cat.id && i.available).sort((a, b) => a.sort - b.sort),
+  }))
+  .filter((cat) => cat.items.length > 0);
+---
+
+<Potli
+  title={order.seo.title}
+  description={order.seo.description}
+  ogTitle={order.seo.ogTitle}
+  ogDescription={order.seo.ogDescription}
+>
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <p class="font-hand text-lg leading-tight opacity-80">{order.eyebrow}</p>
+    <h1 class="heading-rule font-display text-6xl">{order.heading}</h1>
+    <p class="mt-2 text-muted-foreground">{order.intro}</p>
+
+    <form action={order.formAction} method={order.formMethod} class="mt-8 grid gap-10 lg:grid-cols-[1fr_380px]">
+      {/* Menu picker */}
+      <div>
+        <h2 class="heading-rule font-display text-3xl">{order.menuHeading}</h2>
+        <p class="mt-2 text-sm text-muted-foreground">{order.menuHint}</p>
+
+        <div class="mt-6 space-y-8">
+          {
+            sections.map((cat) => (
+              <div>
+                <h2 class="font-display text-3xl text-foreground">{cat.name}</h2>
+                <div class="mt-3 space-y-2">
+                  {cat.items.map((item) => (
+                    <label class="flex cursor-pointer items-center justify-between gap-4 border-b border-charcoal/35 bg-card p-4">
+                      <div class="flex min-w-0 items-start gap-3">
+                        <input
+                          type="checkbox"
+                          name="items"
+                          value={`${item.name} — ${formatPrice(item.price_pence)}`}
+                          class="mt-1 h-4 w-4 shrink-0 accent-[color:var(--accent)]"
+                        />
+                        <div class="min-w-0">
+                          <p class="font-semibold">
+                            {item.name}{" "}
+                            {item.spice > 0 && (
+                              <span class="text-xs tracking-tight text-brand-red">{spiceIcons(item.spice)}</span>
+                            )}
+                          </p>
+                          {item.description && (
+                            <p class="line-clamp-2 text-sm text-muted-foreground">{item.description}</p>
+                          )}
+                          <div class="mt-1 flex flex-wrap gap-1.5">
+                            {item.is_vegan && <span class="badge">Vegan</span>}
+                            {!item.is_vegan && item.is_vegetarian && <span class="badge">V</span>}
+                            {item.contains_nuts && <span class="badge badge-outline">Nuts</span>}
+                            {item.notice_hours > 0 && (
+                              <span class="badge badge-outline border-foreground/40 text-foreground/70">
+                                {item.notice_hours} hours' notice
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <span class="shrink-0 font-hand text-2xl text-brand-red">{formatPrice(item.price_pence)}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* Collection details */}
+      <aside class="h-fit border-2 border-charcoal bg-card p-5 lg:sticky lg:top-24">
+        <h2 class="flex items-center gap-2 font-display text-3xl">
+          <svg
+            class="h-6 w-6 shrink-0 text-primary"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          {order.basketHeading}
+        </h2>
+
+        <p class="mt-4 border-2 border-brand-red p-3 text-sm font-semibold text-brand-red">{order.noticeNote}</p>
+
+        <div class="mt-5 space-y-4">
+          <div>
+            <label class="field-label" for="order-date">{order.fields.date}</label>
+            <input class="field-input" id="order-date" name="pickup_date" type="date" required />
+          </div>
+
+          <div>
+            <label class="field-label" for="order-time">{order.fields.time}</label>
+            <select class="field-input" id="order-time" name="pickup_time" required>
+              <option value="">Choose a time…</option>
+              {order.pickupSlots.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label class="field-label" for="order-name">{order.fields.name}</label>
+            <input class="field-input" id="order-name" name="name" type="text" minlength="2" required />
+          </div>
+
+          <div>
+            <label class="field-label" for="order-phone">{order.fields.phone}</label>
+            <input class="field-input" id="order-phone" name="phone" type="tel" minlength="7" required />
+          </div>
+
+          <div>
+            <label class="field-label" for="order-email">{order.fields.email}</label>
+            <input class="field-input" id="order-email" name="email" type="email" />
+          </div>
+
+          <div>
+            <label class="field-label" for="order-notes">{order.fields.notes}</label>
+            <textarea
+              class="field-textarea"
+              id="order-notes"
+              name="notes"
+              rows="3"
+              placeholder={order.fields.notesPlaceholder}></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-lg w-full">{order.submitLabel}</button>
+          <p class="text-center text-xs text-muted-foreground">{order.payNote}</p>
+        </div>
+
+        <div class="mt-5 border-t border-border pt-4 text-sm text-muted-foreground">
+          <p>{order.afterSubmit.body}</p>
+          <p class="mt-2">{order.collectionAddress}</p>
+          <a href={site.contact.phoneHref} class="btn btn-outline btn-sm mt-3">{site.contact.phone}</a>
+        </div>
+      </aside>
+    </form>
+  </div>
+</Potli>

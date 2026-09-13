@@ -1,0 +1,68 @@
+{
+  "name": "Potli",
+  "tagline": "an Indian market kitchen",
+  "url": "https://potli.co.uk",
+  "established": 2011,
+  "logo": "/images/potli-logo-transparent.png",
+  "favicon": "/favicon.png",
+  "defaultTitle": "Potli — Indian Market Kitchen, Hammersmith",
+  "defaultDescription": "Potli is an Indian market kitchen on King Street, Hammersmith. Bold street food, tandoor and curries. Book a table or order collection online.",
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Yatra+One&family=Karma:wght@400;500;600;700&display=swap",
+  "contact": {
+    "phone": "020 8741 4328",
+    "phoneHref": "tel:02087414328",
+    "phoneInternational": "+442087414328",
+    "streetAddress": "319–321 King Street",
+    "addressLocality": "Hammersmith",
+    "addressRegion": "London",
+    "postalCode": "W6 9NH",
+    "addressCountry": "GB",
+    "latitude": 51.4933,
+    "longitude": -0.2408,
+    "priceRange": "££"
+  },
+  "social": [
+    { "label": "Instagram", "href": "https://www.instagram.com/potlirestaurant/" },
+    { "label": "Facebook", "href": "https://www.facebook.com/potlilondon/" }
+  ],
+  "nav": [
+    { "href": "/", "label": "Home" },
+    { "href": "/menu", "label": "Menu" },
+    { "href": "/story", "label": "Our Story" },
+    { "href": "/book", "label": "Book a Table" },
+    { "href": "/order", "label": "Order" }
+  ],
+  "footerLinks": [
+    { "href": "/menu", "label": "Full menu" },
+    { "href": "/book", "label": "Book a table" },
+    { "href": "/order", "label": "Order collection" },
+    { "href": "/story", "label": "Our story" }
+  ],
+  "footerHoursHeading": "Open every day",
+  "hours": [
+    { "day": "Sun", "times": "13:00 – 21:30" },
+    { "day": "Mon – Thu", "times": "12:00 – 14:00 · 17:30 – 22:00" },
+    { "day": "Fri", "times": "12:00 – 14:30 · 17:00 – 22:30" },
+    { "day": "Sat", "times": "12:00 – 15:00 · 17:00 – 22:30" }
+  ],
+  "openingHoursSpecification": [
+    { "dayOfWeek": "Sunday", "opens": "13:00", "closes": "21:30" },
+    { "dayOfWeek": "Monday", "opens": "12:00", "closes": "14:00" },
+    { "dayOfWeek": "Monday", "opens": "17:30", "closes": "22:00" },
+    { "dayOfWeek": "Tuesday", "opens": "12:00", "closes": "14:00" },
+    { "dayOfWeek": "Tuesday", "opens": "17:30", "closes": "22:00" },
+    { "dayOfWeek": "Wednesday", "opens": "12:00", "closes": "14:00" },
+    { "dayOfWeek": "Wednesday", "opens": "17:30", "closes": "22:00" },
+    { "dayOfWeek": "Thursday", "opens": "12:00", "closes": "14:00" },
+    { "dayOfWeek": "Thursday", "opens": "17:30", "closes": "22:00" },
+    { "dayOfWeek": "Friday", "opens": "12:00", "closes": "14:30" },
+    { "dayOfWeek": "Friday", "opens": "17:00", "closes": "22:30" },
+    { "dayOfWeek": "Saturday", "opens": "12:00", "closes": "15:00" },
+    { "dayOfWeek": "Saturday", "opens": "17:00", "closes": "22:30" }
+  ],
+  "rating": {
+    "ratingValue": 4.5,
+    "reviewCount": 838
+  },
+  "copyright": "Potli, Hammersmith. Est. 2011."
+}

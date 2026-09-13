@@ -1,0 +1,338 @@
+---
+import site from "../content/site.json";
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const {
+  title = site.defaultTitle,
+  description = site.defaultDescription,
+  ogTitle = title,
+  ogDescription = description,
+} = Astro.props;
+
+const pathname = "/" + Astro.url.pathname.replace(/^\/|\/$/g, "");
+const canonical = new URL(Astro.url.pathname, site.url).toString();
+const year = new Date().getFullYear();
+
+const restaurantSchema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: site.name,
+  servesCuisine: "Indian",
+  url: site.url,
+  menu: `${site.url}/menu`,
+  telephone: site.contact.phoneInternational,
+  priceRange: site.contact.priceRange,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.contact.streetAddress,
+    addressLocality: site.contact.addressLocality,
+    addressRegion: site.contact.addressRegion,
+    postalCode: site.contact.postalCode,
+    addressCountry: site.contact.addressCountry,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.contact.latitude,
+    longitude: site.contact.longitude,
+  },
+  openingHoursSpecification: site.openingHoursSpecification.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: `https://schema.org/${h.dayOfWeek}`,
+    opens: h.opens,
+    closes: h.closes,
+  })),
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: site.rating.ratingValue,
+    reviewCount: site.rating.reviewCount,
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href={site.favicon} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={site.fontsHref} />
+    <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
+  </head>
+
+  <body>
+    <div class="flex min-h-svh flex-col">
+      <header class="sticky top-0 z-50 border-b-4 border-charcoal bg-background">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle peer hidden" />
+
+        <div class="flex h-16 items-center justify-between gap-4 px-4 lg:px-8">
+          <a href="/" aria-label={`${site.name} — home`}>
+            <img src={site.logo} alt={`${site.name} — ${site.tagline}`} class="h-11 w-auto" />
+          </a>
+
+          <nav class="hidden items-center gap-6 md:flex">
+            {
+              site.nav.slice(0, 3).map((n) => (
+                <a
+                  href={n.href}
+                  class:list={[
+                    "text-base font-bold tracking-[-0.01em] transition-colors hover:text-brand-red",
+                    pathname === n.href ? "text-brand-red" : "text-charcoal",
+                  ]}
+                >
+                  {n.label}
+                </a>
+              ))
+            }
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <a
+              href={site.contact.phoneHref}
+              class="hidden items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary lg:flex"
+            >
+              <svg
+                class="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"
+                ></path>
+              </svg>
+              {site.contact.phone}
+            </a>
+
+            <a href="/book" class="btn btn-sm hidden md:inline-flex">Book a Table</a>
+
+            <a href="/order" class="btn btn-sm btn-accent">
+              <svg
+                class="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                <path d="M3 6h18"></path>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              Order
+            </a>
+
+            <label
+              for="nav-toggle"
+              class="nav-button cursor-pointer border-2 border-charcoal p-1 md:hidden"
+              aria-label="Toggle menu"
+            >
+              <svg
+                class="nav-icon-open h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+              <svg
+                class="nav-icon-close hidden h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18M6 6l12 12"></path>
+              </svg>
+            </label>
+          </div>
+        </div>
+
+        <nav class="nav-mobile hidden border-t border-border bg-background px-4 py-4 md:!hidden">
+          <div class="flex flex-col gap-3">
+            {
+              site.nav.map((n) => (
+                <a href={n.href} class="text-lg font-bold tracking-[-0.01em] text-charcoal">
+                  {n.label}
+                </a>
+              ))
+            }
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer class="sign-panel border-t-4 border-charcoal bg-charcoal text-background">
+        <div class="w-full overflow-hidden" style="height: 20px" aria-hidden="true">
+          <svg width="100%" height="20" role="presentation">
+            <defs>
+              <pattern id="footer-motif" width="48" height="12" patternUnits="userSpaceOnUse">
+                <path
+                  d="M0 10 Q6 2 12 10 T24 10 T36 10 T48 10"
+                  fill="none"
+                  stroke="#E99814"
+                  stroke-width="1.2"
+                  stroke-linecap="round"></path>
+                <circle cx="6" cy="4" r="1.2" fill="#E99814"></circle>
+                <circle cx="18" cy="4" r="1.2" fill="#E99814"></circle>
+                <circle cx="30" cy="4" r="1.2" fill="#E99814"></circle>
+                <circle cx="42" cy="4" r="1.2" fill="#E99814"></circle>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#footer-motif)"></rect>
+          </svg>
+        </div>
+
+        <div class="px-6 py-10 lg:px-10">
+          <div class="grid gap-10 md:grid-cols-[1.4fr_1fr]">
+            <div>
+              <p class="signboard-address">
+                {site.contact.streetAddress},<br />
+                {site.contact.addressLocality}
+                {site.contact.postalCode}
+              </p>
+
+              <p class="mt-6 flex items-start gap-3 text-3xl leading-tight">
+                <svg
+                  class="mt-2 h-6 w-6 shrink-0 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>
+                  {site.contact.streetAddress},<br />
+                  {site.contact.addressLocality}
+                  {site.contact.postalCode}
+                </span>
+              </p>
+
+              <a
+                href={site.contact.phoneHref}
+                class="mt-5 inline-flex items-center gap-3 text-3xl font-medium text-background hover:text-primary"
+              >
+                <svg
+                  class="h-6 w-6 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"
+                  ></path>
+                </svg>
+                {site.contact.phone}
+              </a>
+
+              <div class="mt-6 flex gap-4">
+                {
+                  site.social.map((s) => (
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={s.label}
+                      class="text-primary hover:opacity-80"
+                    >
+                      {s.label === "Instagram" ? (
+                        <svg
+                          class="h-8 w-8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <rect width="20" height="20" x="2" y="2" rx="5" />
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" />
+                          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                      ) : (
+                        <svg
+                          class="h-8 w-8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                      )}
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="font-sans text-primary">
+              <h2 class="font-sans text-2xl font-semibold">{site.footerHoursHeading}</h2>
+              <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-base leading-snug">
+                {
+                  site.hours.map((h) => (
+                    <div class="contents">
+                      <dt class="font-medium">{h.day}</dt>
+                      <dd class="font-normal">{h.times}</dd>
+                    </div>
+                  ))
+                }
+              </dl>
+            </div>
+          </div>
+
+          <div class="mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-background/20 pt-6 text-sm">
+            {site.footerLinks.map((l) => <a href={l.href} class="opacity-80 hover:opacity-100">{l.label}</a>)}
+          </div>
+        </div>
+
+        <div class="pb-6 text-center text-xs opacity-60">© {year} {site.copyright}</div>
+      </footer>
+    </div>
+  </body>
+</html>

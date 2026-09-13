@@ -1,0 +1,288 @@
+---
+import Potli from "../layouts/Potli.astro";
+import story from "../content/story.json";
+
+const { hero, bar, founder, marketFood, kitchen, givingBack, recognition, classes, closing } = story;
+---
+
+<Potli
+  title={story.seo.title}
+  description={story.seo.description}
+  ogTitle={story.seo.ogTitle}
+  ogDescription={story.seo.ogDescription}
+>
+  <div>
+    <section class="sign-panel bg-background px-6 py-10 text-center">
+      <div class="mx-auto mb-4 flex w-fit items-center gap-2 text-turquoise-deep" aria-hidden="true">
+        {/* Tokri — woven basket */}
+        <svg
+          class="h-6 w-6 -rotate-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 8h16l-2 10a2 2 0 0 1-2 1.6H8A2 2 0 0 1 6 18L4 8Z"></path>
+          <path d="M3 8h18"></path>
+          <path d="M6.2 12.5 10 16M9 11l4.5 4.5M13 10.5l4 4M17.8 12.5 14 16M15 11l-4.5 4.5M11 10.5l-4 4"></path>
+        </svg>
+        {/* Potli — drawstring pouch, always brand red */}
+        <svg
+          class="h-8 w-8"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="color: var(--brand-red)"
+        >
+          <path d="M9 9.5c-2 1.2-3.5 3.2-3.5 5.4A6.5 6.5 0 0 0 12 21a6.5 6.5 0 0 0 6.5-6.1c0-2.2-1.5-4.2-3.5-5.4"></path>
+          <path d="M9 9.5c1 .6 2 .9 3 .9s2-.3 3-.9"></path>
+          <path d="M9.5 9.5 9 6.5M14.5 9.5l.5-3"></path>
+          <path d="M12 6V3.5"></path>
+          <path d="M9.5 4.2 12 3.5l2.5.7"></path>
+        </svg>
+        {/* Handi — rounded cooking pot */}
+        <svg
+          class="h-6 w-6 rotate-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M7 10c-1 1-1.5 2.3-1.5 3.7A6.5 6.5 0 0 0 12 20a6.5 6.5 0 0 0 6.5-6.3c0-1.4-.5-2.7-1.5-3.7"></path>
+          <path d="M6 10h12"></path>
+          <path d="M9.5 7c0 1.2 1.1 2 2.5 2s2.5-.8 2.5-2"></path>
+          <path d="M10.5 7h3"></path>
+          <path d="M12 7V5.5"></path>
+        </svg>
+      </div>
+
+      <p class="font-hand text-base font-bold text-primary">{hero.kicker}</p>
+      <div class="mt-2">
+        <p class="font-hand text-lg leading-tight opacity-80">{hero.eyebrow}</p>
+        <h1 class="heading-rule font-display text-6xl md:text-7xl">{hero.heading}</h1>
+      </div>
+      <p class="mt-4 text-lg text-muted-foreground" set:html={hero.intro} />
+    </section>
+
+    <section class="border-y-4 border-charcoal">
+      <img
+        src={hero.image}
+        alt={hero.imageAlt}
+        class="h-[56vw] max-h-[680px] w-full object-cover"
+        width={hero.imageWidth}
+        height={hero.imageHeight}
+      />
+    </section>
+
+    <section class="sign-panel panel-color grid items-center gap-8 bg-orange px-6 py-10 md:grid-cols-2 lg:px-10">
+      <img
+        src={bar.image}
+        alt={bar.imageAlt}
+        loading="lazy"
+        width={bar.imageWidth}
+        height={bar.imageHeight}
+        class="hard-shadow w-full border-4 border-charcoal object-cover"
+      />
+      <p class="text-lg text-charcoal/80">{bar.body}</p>
+    </section>
+
+    <section class="sign-panel grid gap-10 bg-background px-6 py-10 md:grid-cols-2 lg:px-10">
+      <div class="space-y-4">
+        <h2 class="heading-rule flex items-center gap-3 font-display text-4xl">
+          {/* Thela — two-wheeled street cart */}
+          <svg
+            class="h-8 w-8 shrink-0 text-primary"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16l-1.5 3h-13L4 7Z"></path>
+            <path d="M12 10v2"></path>
+            <path d="M6 12h12v5H6z"></path>
+            <circle cx="9" cy="19" r="1.8"></circle>
+            <circle cx="16" cy="19" r="1.8"></circle>
+            <path d="M18 12v-2"></path>
+          </svg>
+          {founder.heading}
+        </h2>
+        {founder.paragraphs.map((p) => <p class="text-muted-foreground">{p}</p>)}
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="heading-rule flex items-center gap-3 font-display text-4xl">
+          <svg
+            class="h-8 w-8 shrink-0 text-primary"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 8h16l-2 10a2 2 0 0 1-2 1.6H8A2 2 0 0 1 6 18L4 8Z"></path>
+            <path d="M3 8h18"></path>
+            <path d="M6.2 12.5 10 16M9 11l4.5 4.5M13 10.5l4 4M17.8 12.5 14 16M15 11l-4.5 4.5M11 10.5l-4 4"></path>
+          </svg>
+          {marketFood.heading}
+        </h2>
+        {marketFood.paragraphs.map((p) => <p class="text-muted-foreground">{p}</p>)}
+        <p class="text-muted-foreground">
+          {marketFood.closingBefore}
+          <a href={marketFood.closingLinkHref} class="font-semibold text-primary underline"
+            >{marketFood.closingLinkLabel}</a
+          >
+          {marketFood.closingAfter}
+        </p>
+      </div>
+    </section>
+
+    <section class="sign-panel panel-color bg-secondary py-10 text-secondary-foreground">
+      <div class="absolute inset-x-0 top-0 w-full overflow-hidden opacity-60" style="height: 14px" aria-hidden="true">
+        <svg width="100%" height="14" role="presentation">
+          <defs>
+            <pattern id="story-motif" width="48" height="12" patternUnits="userSpaceOnUse">
+              <path
+                d="M0 10 Q6 2 12 10 T24 10 T36 10 T48 10"
+                fill="none"
+                stroke="#252525"
+                stroke-width="1"
+                stroke-linecap="round"></path>
+              <circle cx="6" cy="4" r="1" fill="#252525"></circle>
+              <circle cx="18" cy="4" r="1" fill="#252525"></circle>
+              <circle cx="30" cy="4" r="1" fill="#252525"></circle>
+              <circle cx="42" cy="4" r="1" fill="#252525"></circle>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#story-motif)"></rect>
+        </svg>
+      </div>
+
+      <div class="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2">
+        <div class="space-y-4">
+          <div class="flex items-end gap-3">
+            <div>
+              <p class="font-hand text-lg leading-tight opacity-80">{kitchen.eyebrow}</p>
+              <h2 class="heading-rule font-display text-4xl">{kitchen.heading}</h2>
+            </div>
+            {/* Tandoor — tall clay oven */}
+            <svg
+              class="mb-1 h-8 w-8 text-charcoal/70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M9.5 8C7.5 10 6.5 12.5 6.5 15a5.5 5.5 0 0 0 11 0c0-2.5-1-5-3-7"></path>
+              <path d="M9.5 8c0 1 1.1 1.6 2.5 1.6S14.5 9 14.5 8"></path>
+              <path d="M12 8V6.5"></path>
+              <path d="M12 2.8c-.7.8-.7 1.5 0 2.2.7-.7.7-1.4 0-2.2Z"></path>
+              <path d="M9.6 3.6c-.5.6-.5 1.1 0 1.6"></path>
+              <path d="M14.4 3.6c.5.6.5 1.1 0 1.6"></path>
+            </svg>
+          </div>
+          {kitchen.paragraphs.map((p) => <p class="text-secondary-foreground/85">{p}</p>)}
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="heading-rule flex items-center gap-3 font-display text-4xl">
+            <svg
+              class="h-8 w-8 shrink-0 text-charcoal/70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M7 10c-1 1-1.5 2.3-1.5 3.7A6.5 6.5 0 0 0 12 20a6.5 6.5 0 0 0 6.5-6.3c0-1.4-.5-2.7-1.5-3.7"></path>
+              <path d="M6 10h12"></path>
+              <path d="M9.5 7c0 1.2 1.1 2 2.5 2s2.5-.8 2.5-2"></path>
+              <path d="M10.5 7h3"></path>
+              <path d="M12 7V5.5"></path>
+            </svg>
+            {givingBack.heading}
+          </h2>
+          {givingBack.paragraphs.map((p) => <p class="text-secondary-foreground/85" set:html={p} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="sign-panel panel-color bg-lime px-6 py-10 lg:px-10">
+      <div class="flex items-end gap-3">
+        <div>
+          <p class="font-hand text-lg leading-tight opacity-80">{recognition.eyebrow}</p>
+          <h2 class="heading-rule font-display text-4xl">{recognition.heading}</h2>
+        </div>
+        <svg
+          class="mb-1 h-7 w-7"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="color: var(--brand-red)"
+          aria-hidden="true"
+        >
+          <path d="M9 9.5c-2 1.2-3.5 3.2-3.5 5.4A6.5 6.5 0 0 0 12 21a6.5 6.5 0 0 0 6.5-6.1c0-2.2-1.5-4.2-3.5-5.4"></path>
+          <path d="M9 9.5c1 .6 2 .9 3 .9s2-.3 3-.9"></path>
+          <path d="M9.5 9.5 9 6.5M14.5 9.5l.5-3"></path>
+          <path d="M12 6V3.5"></path>
+          <path d="M9.5 4.2 12 3.5l2.5.7"></path>
+        </svg>
+      </div>
+
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          recognition.items.map((r) => (
+            <li class="hard-shadow border-2 border-charcoal bg-card p-4 text-sm font-semibold">{r}</li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="sign-panel panel-color bg-orange px-6 py-10 lg:px-10">
+      <div class="border-2 border-charcoal bg-background p-8 text-foreground md:p-10">
+        <h2 class="heading-rule font-display text-4xl">{classes.heading}</h2>
+        <p class="mt-2 max-w-2xl text-muted-foreground">{classes.body}</p>
+        <a href={classes.ctaHref} class="btn btn-outline mt-6">{classes.ctaLabel}</a>
+      </div>
+    </section>
+
+    <section class="relative border-t-4 border-charcoal">
+      <img
+        src={closing.image}
+        alt={closing.imageAlt}
+        loading="lazy"
+        width={closing.imageWidth}
+        height={closing.imageHeight}
+        class="h-80 w-full object-cover"
+      />
+      <div class="absolute inset-0 flex items-center justify-center bg-foreground/50">
+        <div class="text-center text-background">
+          <h2 class="heading-rule font-display text-5xl">{closing.heading}</h2>
+          <div class="mt-4 flex justify-center gap-3">
+            <a href={closing.primaryCta.href} class="btn">{closing.primaryCta.label}</a>
+            <a href={closing.secondaryCta.href} class="btn btn-accent">{closing.secondaryCta.label}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Potli>

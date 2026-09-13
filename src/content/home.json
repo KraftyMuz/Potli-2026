@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Potli — Indian Market Kitchen, Hammersmith",
+    "description": "Bold Indian market food on King Street, Hammersmith since 2011. Book a table online or order collection — pay at pickup.",
+    "ogTitle": "Potli — Indian Market Kitchen, Hammersmith",
+    "ogDescription": "Indian market food on King Street. Book a table or order collection online."
+  },
+  "hero": {
+    "heading": "Every market in India, on one menu.",
+    "intro": "Bazaar cooking from Lucknow, Hyderabad, Kolkata and Odisha. Chaat, tandoor, slow curries.",
+    "primaryCta": { "href": "/book", "label": "Book a table" },
+    "secondaryCta": { "href": "/order", "label": "Order collection" },
+    "image": "/images/potli-interior.avif",
+    "imageAlt": "The decorated tuk-tuk stall inside Potli, hung with lights and spice tins",
+    "imageWidth": 1920,
+    "imageHeight": 1440,
+    "stickerLabel": "Potli Express"
+  },
+  "signatures": {
+    "eyebrow": "From the market",
+    "heading": "Signature dishes",
+    "ctaLabel": "Full menu",
+    "ctaHref": "/menu",
+    "featureBadge": "Mum's recipe",
+    "note": "Photography note: the Odia prawn curry and the Champaran mutton have no photograph yet. The prawn curry is deliberately rendered as a typographic card; the mutton card has been replaced by the chicken tikka trio. Swap both in once the dishes have been shot.",
+    "cards": [
+      {
+        "image": "/images/butter-chicken-samosa.avif",
+        "name": "Butter Chicken Samosa",
+        "description": "A potli-shaped samosa stuffed with butter chicken, served with makhani gravy.",
+        "price": "£8.50",
+        "large": true
+      },
+      {
+        "image": "/images/daal-makhni.avif",
+        "name": "Dal Makhani",
+        "description": "Black lentils cooked 24 hours. Side or main.",
+        "price": "£7 / £11"
+      },
+      {
+        "image": "/images/potli-food-4-web.jpg",
+        "name": "Chicken Tikka Trio",
+        "description": "Three marinades, one plate, from the tandoor.",
+        "price": "£13.50"
+      }
+    ],
+    "feature": {
+      "name": "Odia Prawn Curry",
+      "description": "King prawns in a fiercely flavoured onion, ginger-garlic and chilli curry with freshly pounded cumin and coriander.",
+      "note": "Harden's named it one of the top five Indian dishes in London.",
+      "price": "£18.50"
+    }
+  },
+  "storyBand": {
+    "image": "/images/potli-food-3-web.jpg",
+    "imageAlt": "A table of Potli dishes — paratha, curries, tandoori chicken and biryani",
+    "imageWidth": 1616,
+    "imageHeight": 805,
+    "heading": "The chef's spice pouch, rebuilt on King Street",
+    "columns": [
+      "Potli means pouch in Hindi. India's top chefs kept their secret spice blend in a small cloth pouch and took it away after cooking, so nobody could copy it.",
+      "Uttam Tripathy grew up in Sambalpur, Odisha, trained in Chennai, and opened Potli in 2011. Head chef Babul Dey has cooked here since the day it opened, grinding over 35 fresh spices daily. 2026 is our fifteenth year."
+    ],
+    "linkLabel": "Read our story",
+    "linkHref": "/story"
+  },
+  "findUs": {
+    "eyebrow": "Find us",
+    "heading": "319–321 King Street",
+    "image": "/images/potli-exterior.avif",
+    "imageAlt": "The Potli shopfront on King Street with pavement tables",
+    "imageWidth": 1920,
+    "imageHeight": 1440,
+    "body": "Hammersmith, London W6 9NH — two minutes from Ravenscourt Park. There is pavement seating on King Street, so you can eat outside when the weather allows.",
+    "classesLead": "Our chefs also run cookery classes — spices, three courses and a tandoor bread demonstration."
+  },
+  "cta": {
+    "sticker": "since 2011",
+    "eyebrow": "Join us",
+    "heading": "Come and eat with us.",
+    "intro": "A table on King Street, or dinner to carry home — both are two taps away.",
+    "book": {
+      "href": "/book",
+      "label": "Book a table",
+      "note": "Real-time availability, tables for 1 to 30, private dining room seats 30."
+    },
+    "order": {
+      "href": "/order",
+      "label": "Order collection",
+      "note": "Order online, pay at pickup, collection from King Street."
+    }
+  }
+}

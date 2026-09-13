@@ -1,0 +1,159 @@
+---
+import Potli from "../layouts/Potli.astro";
+import menu from "../content/menu.json";
+
+function formatPrice(pence: number): string {
+  return `£${(pence / 100).toFixed(2).replace(/\.00$/, "")}`;
+}
+
+function spiceIcons(level: number): string {
+  return "\u25B2".repeat(Math.max(0, level));
+}
+
+const bands = ["bg-secondary", "bg-orange", "bg-lime"];
+
+const sections = menu.categories
+  .slice()
+  .sort((a, b) => a.sort - b.sort)
+  .map((cat) => ({
+    ...cat,
+    items: menu.items.filter((i) => i.category_id === cat.id).sort((a, b) => a.sort - b.sort),
+  }))
+  .filter((cat) => cat.items.length > 0);
+---
+
+<Potli
+  title={menu.seo.title}
+  description={menu.seo.description}
+  ogTitle={menu.seo.ogTitle}
+  ogDescription={menu.seo.ogDescription}
+>
+  <div class="bg-background px-4 py-10 lg:px-10">
+    <p class="font-hand text-base font-bold text-primary">{menu.kicker}</p>
+    <p class="font-hand text-lg leading-tight opacity-80">{menu.eyebrow}</p>
+    <h1 class="heading-rule font-display text-6xl md:text-7xl">{menu.heading}</h1>
+
+    <div class="mt-4 w-full max-w-sm overflow-hidden opacity-55" style="height: 12px" aria-hidden="true">
+      <svg width="100%" height="12" role="presentation">
+        <defs>
+          <pattern id="menu-motif" width="48" height="12" patternUnits="userSpaceOnUse">
+            <path
+              d="M0 10 Q6 2 12 10 T24 10 T36 10 T48 10"
+              fill="none"
+              stroke="#2E7D77"
+              stroke-width="1"
+              stroke-linecap="round"></path>
+            <circle cx="6" cy="4" r="1" fill="#2E7D77"></circle>
+            <circle cx="18" cy="4" r="1" fill="#2E7D77"></circle>
+            <circle cx="30" cy="4" r="1" fill="#2E7D77"></circle>
+            <circle cx="42" cy="4" r="1" fill="#2E7D77"></circle>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#menu-motif)"></rect>
+      </svg>
+    </div>
+
+    <p class="mt-3 max-w-2xl text-muted-foreground">
+      {menu.intro}{" "}
+      <a href={menu.introLinkHref} class="font-semibold text-primary underline">{menu.introLinkLabel}</a>.
+    </p>
+
+    <div class="mt-8 space-y-0 border-b-4 border-charcoal">
+      {
+        sections.map((cat, categoryIndex) => (
+          <section id={cat.slug} class="border-t-4 border-charcoal pb-6">
+            <div
+              class:list={[
+                "sign-panel panel-color flex flex-wrap items-center gap-x-4 gap-y-1 px-6 py-5",
+                bands[categoryIndex % 3],
+              ]}
+            >
+              <h2 class="heading-rule font-display text-4xl">{cat.name}</h2>
+              {cat.subtitle && <p class="text-sm italic text-secondary-foreground/80">{cat.subtitle}</p>}
+            </div>
+
+            <div class="grid gap-x-10 px-3 md:grid-cols-2">
+              {cat.items.map((item) => (
+                <div class="flex flex-col gap-1 border-b border-charcoal/35 py-3">
+                  <div class="flex items-baseline justify-between gap-3">
+                    <h3 class="font-semibold">
+                      {item.name}
+                      {item.is_popular && (
+                        <span class="ml-2 inline-flex -rotate-2 items-center gap-1 border-2 border-charcoal bg-primary px-2.5 py-0.5 align-middle font-hand text-[11px] font-bold text-charcoal">
+                          <svg
+                            class="h-3 w-3"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" />
+                          </svg>
+                          Most popular
+                        </span>
+                      )}
+                    </h3>
+                    <span class="whitespace-nowrap font-hand text-2xl text-brand-red">
+                      {item.side_price_pence
+                        ? `${formatPrice(item.side_price_pence)} / ${formatPrice(item.price_pence)}`
+                        : formatPrice(item.price_pence)}
+                    </span>
+                  </div>
+
+                  {item.description && <p class="text-sm text-muted-foreground">{item.description}</p>}
+
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted-foreground">
+                    {item.spice > 0 && (
+                      <span title="Spice level" class="tracking-tight text-brand-red">
+                        {spiceIcons(item.spice)}
+                      </span>
+                    )}
+                    {item.is_vegan && <span class="font-sans text-xs font-bold text-turquoise-deep">VEGAN</span>}
+                    {!item.is_vegan && item.is_vegetarian && (
+                      <span class="font-sans text-xs font-bold text-turquoise-deep">V</span>
+                    )}
+                    {item.contains_gluten && <span>GF</span>}
+                    {item.contains_nuts && <span>NUTS</span>}
+                    {item.house_specialty && (
+                      <span class="font-medium italic tracking-normal text-muted-foreground">House specialty</span>
+                    )}
+                    {item.notice_hours > 0 && (
+                      <span class="inline-flex items-center gap-1 border border-brand-red px-1.5 py-0.5 font-sans text-xs font-bold text-brand-red">
+                        <svg
+                          class="h-3 w-3"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 6v6l4 2" />
+                        </svg>
+                        {item.notice_hours} hours' notice
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
+    <div class="sign-panel panel-color mt-8 bg-secondary p-8 text-center text-secondary-foreground">
+      <h2 class="heading-rule font-display text-4xl">{menu.footerHeading}</h2>
+      <p class="mt-2 text-secondary-foreground/85">{menu.footerIntro}</p>
+      <div class="mt-5 flex justify-center gap-3">
+        <a href="/book" class="btn">Book a Table</a>
+        <a href="/order" class="btn btn-accent">Order Collection</a>
+      </div>
+    </div>
+  </div>
+</Potli>

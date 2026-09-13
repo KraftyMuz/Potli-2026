@@ -1,0 +1,108 @@
+---
+import Potli from "../layouts/Potli.astro";
+import site from "../content/site.json";
+import book from "../content/book.json";
+
+const partySizes = Array.from({ length: book.maxPartySize }, (_, i) => i + 1);
+---
+
+<Potli
+  title={book.seo.title}
+  description={book.seo.description}
+  ogTitle={book.seo.ogTitle}
+  ogDescription={book.seo.ogDescription}
+>
+  <div class="mx-auto max-w-2xl px-4 py-10">
+    <p class="font-hand text-base font-bold text-primary">{book.kicker}</p>
+    <p class="font-hand text-lg leading-tight opacity-80">{book.eyebrow}</p>
+    <h1 class="heading-rule font-display text-6xl">{book.heading}</h1>
+    <p class="mt-2 text-muted-foreground">{book.intro}</p>
+
+    <form
+      action={book.formAction}
+      method={book.formMethod}
+      class="mt-8 space-y-6 border-2 border-charcoal bg-card p-6 md:p-8"
+    >
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="field-label" for="date">{book.fields.date}</label>
+          <input class="field-input" id="date" name="date" type="date" required />
+        </div>
+        <div>
+          <label class="field-label" for="party">{book.fields.party}</label>
+          <div class="flex items-center gap-3">
+            <svg
+              class="h-5 w-5 shrink-0 text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <select class="field-input" id="party" name="party_size" required>
+              {partySizes.map((n) => <option value={n} selected={n === 2}>{n}</option>)}
+            </select>
+          </div>
+          <p class="mt-2 text-xs text-muted-foreground">{book.partyHint}</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="field-label" for="time">{book.fields.time}</label>
+        <select class="field-input" id="time" name="time" required>
+          <option value="">Choose a time…</option>
+          <optgroup label="Lunch">
+            {book.lunchSlots.map((t) => <option value={t}>{t}</option>)}
+          </optgroup>
+          <optgroup label="Dinner">
+            {book.dinnerSlots.map((t) => <option value={t}>{t}</option>)}
+          </optgroup>
+        </select>
+        <p class="mt-2 text-xs text-muted-foreground">{book.slotHint}</p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="field-label" for="name">{book.fields.name}</label>
+          <input class="field-input" id="name" name="name" type="text" minlength="2" required />
+        </div>
+        <div>
+          <label class="field-label" for="phone">{book.fields.phone}</label>
+          <input class="field-input" id="phone" name="phone" type="tel" minlength="7" required />
+        </div>
+      </div>
+
+      <div>
+        <label class="field-label" for="email">{book.fields.email}</label>
+        <input class="field-input" id="email" name="email" type="email" />
+      </div>
+
+      <div>
+        <label class="field-label" for="notes">{book.fields.notes}</label>
+        <textarea
+          class="field-textarea"
+          id="notes"
+          name="notes"
+          rows="2"
+          placeholder={book.fields.notesPlaceholder}></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-lg w-full">{book.submitLabel}</button>
+      <p class="text-center text-xs text-muted-foreground">{book.afterSubmit.body}</p>
+    </form>
+
+    <aside class="mt-8 border-2 border-charcoal bg-card p-6">
+      <h2 class="heading-rule font-display text-3xl">{book.sidebar.heading}</h2>
+      <p class="mt-2 text-muted-foreground">{book.sidebar.body}</p>
+      <a href={site.contact.phoneHref} class="btn btn-outline mt-4">{site.contact.phone}</a>
+    </aside>
+
+    <p class="mt-6 text-sm text-muted-foreground">{book.afterSubmit.footnote}</p>
+  </div>
+</Potli>

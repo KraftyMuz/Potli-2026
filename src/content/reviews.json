@@ -1,0 +1,55 @@
+{
+  "note": "These quotes are excerpts from published Google and Tripadvisor reviews. The upgrade path is a live Google reviews widget (Places API / Google Business Profile) so the section stays current.",
+  "googleReviewsUrl": "https://www.google.com/search?q=Potli+Hammersmith+reviews",
+  "ratings": [
+    {
+      "big": "4.5",
+      "small": "out of 5",
+      "note": "838 Google reviews"
+    },
+    {
+      "big": "4.5",
+      "small": "out of 5",
+      "note": "619 Tripadvisor reviews"
+    },
+    {
+      "big": "7.5",
+      "small": "",
+      "note": "The Infatuation, 2025"
+    }
+  ],
+  "eyebrow": "What diners say",
+  "heading": "In their words",
+  "ctaLabel": "Read our Google reviews",
+  "quotes": [
+    {
+      "quote": "By far the best Indian Restaurant in Hammersmith, and we've tried them all.",
+      "by": "Kev D., Google"
+    },
+    {
+      "quote": "The chef himself comes out to greet the customers.",
+      "by": "Daemon A., Google"
+    },
+    {
+      "quote": "A fantastic range of vegan dishes and wonderful service.",
+      "by": "Google review"
+    },
+    {
+      "quote": "Exquisite gem, hiding in plain sight.",
+      "by": "Tripadvisor"
+    },
+    {
+      "quote": "Named one of the top five Indian dishes in London.",
+      "by": "Harden's, on our Odia prawn curry"
+    }
+  ],
+  "pressHeading": "Featured in",
+  "press": [
+    "Michelin Guide",
+    "The Good Food Guide",
+    "Condé Nast Traveller",
+    "Harden's",
+    "Tatler",
+    "Time Out"
+  ]
+}

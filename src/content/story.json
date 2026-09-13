@@ -1,0 +1,86 @@
+{
+  "seo": {
+    "title": "Our Story — Potli, Indian Market Kitchen Hammersmith",
+    "description": "A potli is the cloth pouch India's top chefs kept their secret spice blend in. Founder Uttam Tripathy's market kitchen has been on King Street since 2011.",
+    "ogTitle": "Our Story — Potli, an Indian Market Kitchen",
+    "ogDescription": "The spice pouch, the markets of India, and fifteen years on King Street, Hammersmith."
+  },
+  "hero": {
+    "kicker": "Est. 2011 · Hammersmith",
+    "eyebrow": "About Potli",
+    "heading": "The Chef's Spice Pouch",
+    "intro": "<em>Potli</em> means pouch in Hindi. India's top chefs each kept their own secret spice blend in a small cloth pouch, and took it away with them after cooking so that no one could copy it. Our founder, Uttam Tripathy, compares it to a bouquet garni. That pouch is the whole idea behind this restaurant.",
+    "image": "/images/potli-interior.avif",
+    "imageAlt": "The decorated tuk-tuk stall inside Potli on King Street, Hammersmith",
+    "imageWidth": 1920,
+    "imageHeight": 1440
+  },
+  "bar": {
+    "image": "/images/img-2983.jpg",
+    "imageAlt": "A Potli chef behind the bar in the restaurant",
+    "imageWidth": 1287,
+    "imageHeight": 965,
+    "body": "The bar and the kitchen sit side by side on King Street. The chefs roast and grind their own spices every morning, and the team you meet at the pass is the same team that has been here for years."
+  },
+  "founder": {
+    "heading": "Uttam Tripathy",
+    "icon": "thela",
+    "paragraphs": [
+      "Uttam grew up in Sambalpur, Odisha, one of four children of academics at Sambalpur University. He was expected to become an engineer or a doctor, but with two elder brothers already on those paths he turned down an engineering place and enrolled instead at the Institute of Hotel Management and Catering in Chennai — the school that produced Atul Kochhar, the first Indian chef to be awarded a Michelin star. It was his father's suggestion, and his father backed him.",
+      "He worked for the Radisson group in New Delhi, then came to England in 2002, headhunted to run a restaurant here. In 2011 he opened Potli on King Street. 2026 is our fifteenth year."
+    ]
+  },
+  "marketFood": {
+    "heading": "Market Food, Not Street Food",
+    "icon": "tokri",
+    "paragraphs": [
+      "When Uttam arrived, King Street had plenty of Indian restaurants, nearly all serving the same menu. After Independence, the skilled chefs who had cooked for India's rulers opened shops selling one specific dish local to their area, and every market became known for something: Lucknow for kebabs, the north-west frontier for roasted meats, biryani arriving from Iran and made famous in Hyderabad."
+    ],
+    "closingBefore": "Uttam took the best from the markets of Lucknow, Delhi, Chennai, Kolkata, Mumbai, Hyderabad and his own Sambalpur, and rebuilt them on one menu. The section names on our ",
+    "closingLinkLabel": "menu",
+    "closingLinkHref": "/menu",
+    "closingAfter": " are those markets — Chowpatty, Chandni Chowk, Chowringhee Lane, Aminabad, Charminar, Fountain Chowk."
+  },
+  "kitchen": {
+    "eyebrow": "In our kitchen",
+    "heading": "The Kitchen",
+    "paragraphs": [
+      "Head chef Babul Dey has cooked at Potli since the day it opened. The chefs roast and grind over 35 fresh spices every day, and every dish has its own blend.",
+      "The Odia prawn curry is Uttam's mother's recipe. The vegetable chops are another Odia dish — beetroot, carrot, potato and peanuts."
+    ]
+  },
+  "givingBack": {
+    "heading": "Giving Back",
+    "paragraphs": [
+      "Uttam has run charity dinners for the past eight or nine years. In 2026 he gave the entire profit of an evening's service, £1,000, to the Hogarth Youth &amp; Community Centre in Chiswick. Past beneficiaries include Great Ormond Street Hospital and the Hope Foundation.",
+      "He is a director of The Saffron Kitchen Ltd, which provides subsidised food to people including domestic abuse survivors and successful asylum claimants. Each year he cooks with fellow Odias for two or three hundred people at the Nuakhai harvest festival."
+    ]
+  },
+  "recognition": {
+    "eyebrow": "Accolades",
+    "heading": "Recognition",
+    "items": [
+      "Listed in the Michelin Guide",
+      "Listed in The Good Food Guide",
+      "Rated 7.5 by The Infatuation, 2025",
+      "Among Condé Nast Traveller's best restaurants in Hammersmith",
+      "Harden's: the Odia prawn curry, a top-five Indian dish in London",
+      "Tatler's Restaurant Guide 2013"
+    ]
+  },
+  "classes": {
+    "heading": "Cook With Us",
+    "body": "Our chefs run cookery classes: an introduction to Indian spices, then you cook a starter, a main and a side, watch bread made in the tandoor and sit down to eat what you've made. Places are limited and there is usually a waiting list.",
+    "ctaLabel": "Ask about classes",
+    "ctaHref": "tel:02087414328"
+  },
+  "closing": {
+    "image": "/images/potli-food-3-web.jpg",
+    "imageAlt": "A spread of Potli dishes",
+    "imageWidth": 1616,
+    "imageHeight": 805,
+    "heading": "Come Hungry",
+    "primaryCta": { "href": "/book", "label": "Book a Table" },
+    "secondaryCta": { "href": "/order", "label": "Order Collection" }
+  }
+}
